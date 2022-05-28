@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    display: flex;
+    background-color: #570dec;
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+.top-nav{
+
+    height:80px;
+    font-size: 70px;
+    font-family: 'Roboto', sans-serif;
+    color: #d9cd00;
+
+ }
+.top-nav>p{
+padding-left: 180px;
+}
+
