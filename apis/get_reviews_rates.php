@@ -1,6 +1,6 @@
 <?php
 
-include("connection.php");
+include("../Database/connection.php");
 
 
 $query = $mysqli->prepare("SELECT * from reviews_rates");

@@ -1,6 +1,6 @@
 <?php
 
-include("connection.php");
+include("../Database/connection.php");
 
 $username = $_POST["username"];
 
@@ -10,9 +10,9 @@ $response = [];
 
 $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
 
-        $result = mysqli_query($mysqli, $sql);
+$result = mysqli_query($mysqli, $sql);
 
-        if (mysqli_num_rows($result) === 1) {
+if (mysqli_num_rows($result) === 1) {
 
           $row = mysqli_fetch_assoc($result);
 
