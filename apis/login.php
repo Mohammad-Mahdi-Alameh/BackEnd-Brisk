@@ -4,33 +4,38 @@ include("../Database/connection.php");
 
 $username = $_POST["username"];
 
-$password =  $_POST["password"];
+$password = hash("sha256", $_POST["password"]);
+
+$query = $mysqli->prepare("Select user_id from users where username = ? AND password = ?");
+
+$query->bind_param("ss", $username, $password);
+
+$query->execute();
+
+$query->store_result();
+
+$num_rows = $query->num_rows;
+
+$query->bind_result($id);
+
+$query->fetch();
 
 $response = [];
 
-$sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+if($num_rows == 0){
 
-$result = mysqli_query($mysqli, $sql);
+    $response["response"] = "User not found";
 
-if (mysqli_num_rows($result) === 1) {
+}
+else{
 
-          $row = mysqli_fetch_assoc($result);
+    $response["response"] = "User logged in successfuly";
 
-          $response["response"] = "User logged in successfuly";
-         
-           $response["response"]=$row;
+    $response["user_id"] = $id;
 
-           //$response["user_id"] = $row['user_id']; 
-         // $response["is_admin"] = $row['is_admin']; 
-
-        //  $_SESSION['id']=$id;
-           
 }
 
-        else
-        
-            $response["response"] = "User not found";
-        
-        $json = json_encode($response);
-        echo $json;
+$json = json_encode($response);
+
+echo $json;
 ?>
