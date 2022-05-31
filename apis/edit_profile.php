@@ -2,39 +2,31 @@
 
 include("../Database/connection.php");
 
-
-
 $username = $_POST["username"];
 
 $password = hash("sha256", $_POST["password"]);
 
 $phone = $_POST["phone"];
 
-$update_username_query = $mysqli->prepare("UPDATE users SET username=? WHERE $_COOKIE[$user_id]");
+$user_id="user_id";
 
-$update_password_query = $mysqli->prepare("UPDATE users SET password=? WHERE");
+$update_username_query = $mysqli->prepare("UPDATE users SET username='$username' WHERE user_id=$_COOKIE[$user_id]");
 
-$update_phone_query = $mysqli->prepare("UPDATE users SET phone=? WHERE");
+$update_password_query = $mysqli->prepare("UPDATE users SET password='$password' WHERE user_id=$_COOKIE[$user_id]");
 
-$update_username_quer->bind_param("s", $username);
+$update_phone_query = $mysqli->prepare("UPDATE users SET phone='$phone' WHERE user_id=$_COOKIE[$user_id]");
 
-$update_password_quer->bind_param("s", $password);
+// $update_username_query->bind_param("s", $username);
 
-$update_phone_quer->bind_param("s", $phone);
+// $update_password_query->bind_param("s", $password);
 
-$update_username_quer->execute();
+// $update_phone_query->bind_param("s", $phone);
 
-$update_username_quer->execute();
+$update_username_query->execute();
 
-$update_username_quer->execute();
+$update_password_query->execute();
 
-$get_id_query->execute();
-
-$get_id_query->store_result();
-
-$get_id_query->bind_result($id);
-
-$get_id_query->fetch();
+$update_phone_query->execute();
 
 $response = [];
 
