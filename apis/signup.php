@@ -47,6 +47,8 @@ $response["success"] = true;
 
 $response["user_id"]=$id;
 
+$response["is_admin"]=0;
+
 echo json_encode($response);
 
 ?>

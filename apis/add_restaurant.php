@@ -8,11 +8,11 @@ $working_hours = $_POST["working_hours"];
 
 $dining_room_capacity = $_POST["dining_room_capacity"];
 
-$drivethrough_availabilty = $_POST["drivethrough_availabilty"];
+$drivethrough_availability = $_POST["drivethrough_availability"];
 
-$delivery_availabilty = $_POST["delivery_availabilty"];
+$delivery_availability = $_POST["delivery_availability"];
 
-$reservation_availabilty = $_POST["reservation_availabilty"];
+$reservation_availability = $_POST["reservation_availability"];
 
 $support_all_diets = $_POST["support_all_diets"];
 
@@ -20,11 +20,11 @@ $address = $_POST["address"];
 
 $phone = $_POST["phone"];
 
-$query = $mysqli->prepare("INSERT INTO restaurants(trade_name, working_hours ,dining_room_capacity, drivethrough_availabilty, delivery_availabilty,reservation_availabilty,support_all_diets,address,phone) VALUES (?, ?, ?, ?,?,?,?,?,?)");
+$query = $mysqli->prepare("INSERT INTO restaurants(trade_name, working_hours ,dining_room_capacity, drivethrough_availability, delivery_availability,reservation_availability,support_all_diets,address,phone) VALUES (?, ?, ?, ?,?,?,?,?,?)");
 
-$query->bind_param("ssiiiiiss", $trade_name, $working_hours, $dining_room_capacity, $drivethrough_availabilty,$delivery_availabilty,
+$query->bind_param("ssiiiiiss", $trade_name, $working_hours, $dining_room_capacity, $drivethrough_availability,$delivery_availability,
 
-$reservation_availabilty,$support_all_diets,$address,$phone);
+$reservation_availability,$support_all_diets,$address,$phone);
 
 $query->execute();
 
