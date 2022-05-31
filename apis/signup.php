@@ -24,13 +24,28 @@ $is_admin = 0;
 
 
 
-$query = $mysqli->prepare("INSERT INTO users (first_name,last_name,username,password,dob,country,city,phone,gender,is_admin)VALUES
+$insert_query = $mysqli->prepare("INSERT INTO users (first_name,last_name,username,password,dob,country,city,phone,gender,is_admin)VALUES
 (?,?,?,?,?,?,?,?,?,?)");
-$query->bind_param("ssssssssss", $first_name, $last_name, $username, $password,$dob,$country,$city,$phone,$gender,$is_admin);
-$query->execute();
+
+$get_id_query= $mysqli->prepare("SELECT LAST_INSERT_ID()");
+
+$insert_query->bind_param("ssssssssss", $first_name, $last_name, $username, $password,$dob,$country,$city,$phone,$gender,$is_admin);
+
+$insert_query->execute();
+
+$get_id_query->execute();
+
+$get_id_query->store_result();
+
+$get_id_query->bind_result($id);
+
+$get_id_query->fetch();
 
 $response = [];
+
 $response["success"] = true;
+
+$response["user_id"]=$id;
 
 echo json_encode($response);
 
