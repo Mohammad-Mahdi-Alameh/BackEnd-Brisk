@@ -8,7 +8,7 @@ $last_name = $_POST["last_name"];
 
 $username = $_POST["username"];
 
-$password =  $_POST["password"];
+$password = hash("sha256", $_POST["password"]);
 
 $dob = $_POST["dob"];
 

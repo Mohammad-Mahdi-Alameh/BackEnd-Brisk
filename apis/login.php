@@ -16,7 +16,7 @@ if (mysqli_num_rows($result) === 1) {
 
           $row = mysqli_fetch_assoc($result);
 
-          $response["response"] = "Logged in";
+          $response["response"] = "User logged in successfuly";
          
            $response["response"]=$row;
 
@@ -29,7 +29,7 @@ if (mysqli_num_rows($result) === 1) {
 
         else
         
-            $response["response"] = "UserNotFound";
+            $response["response"] = "User not found";
         
         $json = json_encode($response);
         echo $json;
